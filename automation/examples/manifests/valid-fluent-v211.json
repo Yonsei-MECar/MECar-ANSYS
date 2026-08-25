@@ -1,0 +1,11 @@
+{
+  "schema_version": "1.0.0",
+  "submission_id": "fluent-pending-001",
+  "profile": {"id": "fluent-v211-pending", "version": "1.0.0"},
+  "adapter": "fluent_v211",
+  "timeout_sec": 14400,
+  "parameters": {},
+  "resources": {"cpu": 4, "memory_mb": 8192, "licenses": {"ansys_fluent": 1}},
+  "notification": {"recipients": []}
+}
+

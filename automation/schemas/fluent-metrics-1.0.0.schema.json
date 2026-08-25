@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mecar.local/schemas/fluent-metrics-1.0.0.json",
+  "type": "object",
+  "required": ["schema_version", "solver_release", "engineering_outcome", "metrics"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "solver_release": {"const": "211"},
+    "engineering_outcome": {"const": "PASSED"},
+    "metrics": {
+      "type": "object",
+      "required": ["drag_n", "downforce_n", "cd", "cl"],
+      "properties": {
+        "drag_n": {"type": "number"},
+        "downforce_n": {"type": "number"},
+        "cd": {"type": "number"},
+        "cl": {"type": "number"}
+      }
+    }
+  }
+}
+

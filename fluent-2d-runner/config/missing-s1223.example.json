@@ -1,0 +1,59 @@
+{
+  "schemaVersion": "mecar.fluent2d.case/v1",
+  "caseId": "s1223-input-required",
+  "solver": {
+    "product": "ANSYS Fluent",
+    "release": "2021 R1",
+    "tuiVersion": "21.1",
+    "dimension": "2d",
+    "precision": "double",
+    "threads": 2,
+    "license": "user-provided-local-ansys-license"
+  },
+  "mesh": {
+    "backend": "gmsh-4.13.1",
+    "generatorVersion": "mecar-gmsh2d/v1",
+    "airfoil": {
+      "id": "S1223",
+      "sourceType": "selig-dat",
+      "path": "inputs/airfoils/s1223.dat",
+      "sha256": "REPLACE_WITH_APPROVED_SOURCE_SHA256______________________________",
+      "source": "PENDING: record the approved coordinate source URL or document",
+      "license": "PENDING: record redistribution and use terms"
+    },
+    "chordM": 0.47,
+    "heightM": 0.08,
+    "angleDeg": 0.0,
+    "domainUpstreamChord": 4.0,
+    "domainDownstreamChord": 8.0,
+    "domainTopChord": 5.0,
+    "sizing": {"surfaceSizeM": 0.0047, "farfieldSizeM": 0.047, "boundaryLayer": {"enabled": true, "firstLayerM": 0.000035, "growthRatio": 1.18, "layerCount": 18}}
+  },
+  "flow": {
+    "model": "k-omega-sst",
+    "velocityMps": 12.5,
+    "densityKgM3": 1.225,
+    "viscosityPaS": 1.7894e-05,
+    "temperatureK": 288.15,
+    "turbulenceIntensity": 0.05,
+    "turbulentViscosityRatio": 10.0,
+    "groundMotion": "moving-freestream"
+  },
+  "reference": {
+    "areaM2": 0.47,
+    "lengthM": 0.47,
+    "axes": {"x": "freestream-positive", "y": "up-positive"},
+    "rawForceConvention": "force-on-body-by-fluid",
+    "coefficientConvention": "Cd=Fx/(qA);C_DF=-Fy/(qA)",
+    "spanAssumptionM": 1.0
+  },
+  "iterations": {"warmup": 100, "secondOrder": 300, "sampleEvery": 25, "autoExtend": true, "extensionChunk": 100, "hardMaximum": 800},
+  "convergence": {
+    "residualMax": {"continuity": 0.001, "x-velocity": 0.00001, "y-velocity": 0.00001, "k": 0.001, "omega": 0.0001},
+    "massImbalanceRatioMax": 0.001,
+    "forcePlateauRelativeRangeMax": 0.01,
+    "forcePlateauMinSamples": 5
+  },
+  "artifacts": {"required": ["report.json", "residuals.csv", "forces.csv", "mesh-quality.json"]},
+  "authority": {"coefficientStatus": "unverified-until-manual-baseline-comparison", "manualBaselineId": null, "manualCd": null, "manualCDF": null, "manualTolerance": null}
+}

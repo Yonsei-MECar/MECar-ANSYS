@@ -1,0 +1,5 @@
+# Windows x86_64 wheel downloaded from PyPI. setup_gmsh.ps1 verifies this hash
+# before installation and never downloads unless -AllowDownload is explicit.
+gmsh==4.13.1 \
+    --hash=sha256:00f3c86b3146c1af1259e695ed646880c9da0c2ded2d1e48b240a1d3d194bae6
+

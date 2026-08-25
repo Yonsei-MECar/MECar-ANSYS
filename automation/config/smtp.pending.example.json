@@ -1,0 +1,28 @@
+{
+  "external_execution_enabled": false,
+  "external_notification_enabled": false,
+  "minimum_free_disk_mb": 1024,
+  "resources": {
+    "cpu": 4,
+    "memory_mb": 8192,
+    "licenses": {}
+  },
+  "recipient_policy": {
+    "version": "pending-approval-1",
+    "allowed_domains": ["example.com"],
+    "allowed_addresses": [],
+    "max_recipients": 20
+  },
+  "notification": {
+    "adapter": "smtp",
+    "external_send_enabled": false,
+    "host": "smtp.example.com",
+    "port": 587,
+    "security": "starttls_required",
+    "username_ref": "wincred://mecar/smtp/username",
+    "password_ref": "wincred://mecar/smtp/password",
+    "header_from": "analysis@example.com",
+    "envelope_from": "analysis-bounce@example.com"
+  }
+}
+

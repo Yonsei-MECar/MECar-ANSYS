@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0.0",
+  "profile_id": "fluent-invalid",
+  "version": "1.0.0",
+  "adapter": "fluent_v211",
+  "enabled": true,
+  "ansys_release": "211",
+  "external_execution_enabled": true,
+  "settings": {
+    "executable": "fluent.exe",
+    "approved_input": "journal.jou",
+    "approved_input_sha256": "not-a-checksum",
+    "dimension_precision": "single"
+  }
+}

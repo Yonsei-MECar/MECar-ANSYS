@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "mecar.fluent2d.sweep-plan/v1",
+  "profiles": [
+    {
+      "id": "NACA6412",
+      "sourceType": "procedural-naca4",
+      "generatorVersion": "mecar-naca4/v1",
+      "source": "NACA four-digit analytical definition; no external coordinate file",
+      "license": "public-domain-mathematical-definition"
+    },
+    {
+      "id": "NACA6409",
+      "sourceType": "procedural-naca4",
+      "generatorVersion": "mecar-naca4/v1",
+      "source": "NACA four-digit analytical definition; no external coordinate file",
+      "license": "public-domain-mathematical-definition"
+    },
+    {
+      "id": "S1223",
+      "sourceType": "selig-dat",
+      "path": "inputs/airfoils/s1223.dat",
+      "sha256": null,
+      "source": "PENDING: approved coordinate source",
+      "license": "PENDING: redistribution/use terms"
+    },
+    {
+      "id": "E423",
+      "sourceType": "selig-dat",
+      "path": "inputs/airfoils/e423.dat",
+      "sha256": null,
+      "source": "PENDING: approved coordinate source",
+      "license": "PENDING: redistribution/use terms"
+    }
+  ],
+  "heightsMm": [40, 55, 70, 90, 110, 140],
+  "anglesDeg": [-5.0, -3.0, -1.0, 0.0, 1.0, 3.0, 5.0]
+}
+

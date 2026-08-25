@@ -1,0 +1,50 @@
+name: tests
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  core-tests:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Test automation
+        working-directory: automation
+        shell: pwsh
+        run: |
+          $env:PYTHONPATH = (Resolve-Path src).Path
+          python -m unittest discover -s tests -t . -v
+      - name: Install hash-pinned Gmsh wheel
+        run: python -m pip install --disable-pip-version-check --require-hashes --only-binary=:all: -r .\fluent-2d-runner\requirements.lock.txt
+      - name: Test Fluent 2D runner without external solver
+        working-directory: fluent-2d-runner
+        shell: pwsh
+        run: |
+          $env:PYTHONPATH = (Resolve-Path src).Path
+          python -m unittest discover -s tests -v
+
+  mcp-tests:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: mcp-server/requirements.lock.txt
+      - name: Install hash-locked MCP dependencies
+        run: python -m pip install --disable-pip-version-check --require-hashes --only-binary=:all: -r .\mcp-server\requirements.lock.txt
+      - name: Install MCP server without dependency resolution
+        run: python -m pip install --disable-pip-version-check --no-deps --no-build-isolation .\mcp-server
+      - name: Test MCP server without launching MAPDL
+        working-directory: mcp-server
+        run: python -m pytest -q

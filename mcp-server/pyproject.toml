@@ -1,0 +1,30 @@
+[build-system]
+requires = ["hatchling==1.27.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "mecar-ansys-mcp-server"
+version = "0.1.1"
+description = "Portable MCP bridge for Ansys MAPDL 2021 R1 and Workbench batch scripting"
+readme = "README_KO.md"
+requires-python = ">=3.10,<3.13"
+license = { text = "MIT" }
+dependencies = [
+  "mcp==1.29.0",
+  "ansys-mapdl-core==0.73.2",
+]
+
+[project.scripts]
+ansys-mcp-server = "ansys_mcp_server.server:main"
+
+[project.optional-dependencies]
+dev = [
+  "hatchling==1.27.0",
+  "pytest==8.4.2",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ansys_mcp_server"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -1,0 +1,9 @@
+{
+  "schema_version": "1.0.0",
+  "submission_id": "mapdl-invalid-001",
+  "profile": {"id": "mapdl-v211-pending", "version": "1.0.0"},
+  "adapter": "mapdl_v211",
+  "timeout_sec": 7200,
+  "inputs": [{"path": "..\\unapproved.dat"}]
+}
+

@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0.0",
+  "profile_id": "fluent-v211-pending",
+  "version": "1.0.0",
+  "adapter": "fluent_v211",
+  "enabled": false,
+  "ansys_release": "211",
+  "external_execution_enabled": false,
+  "resources": {"cpu": 4, "memory_mb": 8192, "licenses": {"ansys_fluent": 1}},
+  "settings": {
+    "executable": "C:\\Program Files\\ANSYS Inc\\v211\\fluent\\ntbin\\win64\\fluent.exe",
+    "executable_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "approved_input": "C:\\MECarConfig\\approved\\fluent_master.jou",
+    "approved_input_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "approved_assets": [
+      {
+        "source": "C:\\MECarConfig\\approved\\fluent_case.cas.h5",
+        "target": "fluent_case.cas.h5",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+      }
+    ],
+    "dimension_precision": "3ddp",
+    "max_timeout_sec": 14400,
+    "mandatory_outputs": ["metrics.json", "convergence.json"]
+  },
+  "pending_decisions": [
+    "Approve the exact journal/case workflow and replace its SHA-256",
+    "Confirm 2ddp or 3ddp, report signs, axes, reference area and convergence limits",
+    "Set both profile and machine external_execution_enabled only after a live golden-case check"
+  ]
+}

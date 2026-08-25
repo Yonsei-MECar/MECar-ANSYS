@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mecar-fluent2d"
+version = "0.1.0"
+description = "Fail-closed Fluent 2021 R1 2D case runner for MECar"
+requires-python = ">=3.11"
+license = { file = "LICENSE" }
+dependencies = []
+
+classifiers = [
+  "License :: OSI Approved :: GNU General Public License v2 or later (GPLv2+)",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+]
+
+[project.scripts]
+mecar-fluent2d = "mecar_fluent2d.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

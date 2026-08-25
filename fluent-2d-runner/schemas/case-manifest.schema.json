@@ -1,0 +1,146 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mecar.local/schemas/fluent2d-case-v1.json",
+  "title": "MECar Fluent 2021 R1 2D Case",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion", "caseId", "solver", "mesh", "flow", "reference",
+    "iterations", "convergence", "artifacts", "authority"
+  ],
+  "properties": {
+    "schemaVersion": {"const": "mecar.fluent2d.case/v1"},
+    "caseId": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,79}$"},
+    "solver": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["product", "release", "tuiVersion", "dimension", "precision", "threads", "license"],
+      "properties": {
+        "product": {"const": "ANSYS Fluent"},
+        "release": {"const": "2021 R1"},
+        "tuiVersion": {"const": "21.1"},
+        "dimension": {"const": "2d"},
+        "precision": {"enum": ["single", "double"]},
+        "threads": {"type": "integer", "minimum": 1, "maximum": 8},
+        "license": {"type": "string", "minLength": 1}
+      }
+    },
+    "mesh": {
+      "type": "object",
+      "required": ["backend", "generatorVersion", "airfoil", "chordM", "heightM", "angleDeg", "domainUpstreamChord", "domainDownstreamChord", "domainTopChord", "sizing"],
+      "properties": {
+        "backend": {"const": "gmsh-4.13.1"},
+        "generatorVersion": {"const": "mecar-gmsh2d/v1"},
+        "airfoil": {
+          "type": "object",
+          "required": ["id", "sourceType", "source", "license"],
+          "properties": {
+            "id": {"type": "string", "minLength": 1},
+            "sourceType": {"enum": ["procedural-naca4", "selig-dat"]},
+            "generatorVersion": {"type": "string"},
+            "path": {"type": "string", "pattern": "^(?![A-Za-z]:)(?![/\\\\])(?!.*(?:^|[/\\\\])\\.\\.(?:[/\\\\]|$)).+"},
+            "sha256": {"type": "string", "pattern": "^[0-9A-Fa-f]{64}$"},
+            "source": {"type": "string", "minLength": 1},
+            "license": {"type": "string", "minLength": 1}
+          }
+        },
+        "chordM": {"type": "number", "exclusiveMinimum": 0},
+        "heightM": {"type": "number", "exclusiveMinimum": 0},
+        "angleDeg": {"type": "number", "minimum": -30, "maximum": 30},
+        "domainUpstreamChord": {"type": "number", "exclusiveMinimum": 0},
+        "domainDownstreamChord": {"type": "number", "exclusiveMinimum": 0},
+        "domainTopChord": {"type": "number", "exclusiveMinimum": 0},
+        "sizing": {
+          "type": "object",
+          "required": ["surfaceSizeM", "farfieldSizeM", "boundaryLayer"],
+          "properties": {
+            "surfaceSizeM": {"type": "number", "exclusiveMinimum": 0},
+            "farfieldSizeM": {"type": "number", "exclusiveMinimum": 0},
+            "boundaryLayer": {
+              "type": "object",
+              "required": ["enabled", "firstLayerM", "growthRatio", "layerCount"],
+              "properties": {
+                "enabled": {"type": "boolean"},
+                "firstLayerM": {"type": "number", "exclusiveMinimum": 0},
+                "growthRatio": {"type": "number", "exclusiveMinimum": 1},
+                "layerCount": {"type": "integer", "minimum": 3, "maximum": 50}
+              }
+            }
+          }
+        }
+      }
+    },
+    "flow": {
+      "type": "object",
+      "required": ["model", "velocityMps", "densityKgM3", "viscosityPaS", "temperatureK", "turbulenceIntensity", "turbulentViscosityRatio", "groundMotion"],
+      "properties": {
+        "model": {"const": "k-omega-sst"},
+        "velocityMps": {"type": "number", "exclusiveMinimum": 0},
+        "densityKgM3": {"type": "number", "exclusiveMinimum": 0},
+        "viscosityPaS": {"type": "number", "exclusiveMinimum": 0},
+        "temperatureK": {"type": "number", "exclusiveMinimum": 0},
+        "turbulenceIntensity": {"type": "number", "exclusiveMinimum": 0, "maximum": 1},
+        "turbulentViscosityRatio": {"type": "number", "exclusiveMinimum": 0},
+        "groundMotion": {"const": "moving-freestream"}
+      }
+    },
+    "reference": {
+      "type": "object",
+      "required": ["areaM2", "lengthM", "axes", "rawForceConvention", "coefficientConvention", "spanAssumptionM"],
+      "properties": {
+        "areaM2": {"type": "number", "exclusiveMinimum": 0},
+        "lengthM": {"type": "number", "exclusiveMinimum": 0},
+        "axes": {
+          "type": "object",
+          "required": ["x", "y"],
+          "properties": {"x": {"const": "freestream-positive"}, "y": {"const": "up-positive"}}
+        },
+        "rawForceConvention": {"const": "force-on-body-by-fluid"},
+        "coefficientConvention": {"const": "Cd=Fx/(qA);C_DF=-Fy/(qA)"},
+        "spanAssumptionM": {"type": "number", "exclusiveMinimum": 0}
+      }
+    },
+    "iterations": {
+      "type": "object",
+      "required": ["warmup", "secondOrder", "sampleEvery", "autoExtend", "extensionChunk", "hardMaximum"],
+      "properties": {
+        "warmup": {"type": "integer", "minimum": 1},
+        "secondOrder": {"type": "integer", "minimum": 1},
+        "sampleEvery": {"type": "integer", "minimum": 1},
+        "autoExtend": {"type": "boolean"},
+        "extensionChunk": {"type": "integer", "minimum": 1},
+        "hardMaximum": {"type": "integer", "minimum": 1}
+      }
+    },
+    "convergence": {
+      "type": "object",
+      "required": ["residualMax", "massImbalanceRatioMax", "forcePlateauRelativeRangeMax", "forcePlateauMinSamples"],
+      "properties": {
+        "residualMax": {
+          "type": "object",
+          "required": ["continuity", "x-velocity", "y-velocity", "k", "omega"],
+          "additionalProperties": {"type": "number", "exclusiveMinimum": 0}
+        },
+        "massImbalanceRatioMax": {"type": "number", "exclusiveMinimum": 0},
+        "forcePlateauRelativeRangeMax": {"type": "number", "exclusiveMinimum": 0},
+        "forcePlateauMinSamples": {"type": "integer", "minimum": 3}
+      }
+    },
+    "artifacts": {
+      "type": "object",
+      "required": ["required"],
+      "properties": {"required": {"type": "array", "minItems": 4, "uniqueItems": true, "items": {"type": "string"}}}
+    },
+    "authority": {
+      "type": "object",
+      "required": ["coefficientStatus", "manualBaselineId", "manualCd", "manualCDF", "manualTolerance"],
+      "properties": {
+        "coefficientStatus": {"type": "string"},
+        "manualBaselineId": {"type": ["string", "null"]},
+        "manualCd": {"type": ["number", "null"]},
+        "manualCDF": {"type": ["number", "null"]},
+        "manualTolerance": {"type": ["number", "null"], "exclusiveMinimum": 0}
+      }
+    }
+  }
+}

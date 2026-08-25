@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mecar.local/schemas/fluent-convergence-1.0.0.json",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "converged",
+    "force_monitor_stable",
+    "mass_imbalance_percent",
+    "residuals"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "converged": {"const": true},
+    "force_monitor_stable": {"const": true},
+    "mass_imbalance_percent": {"type": "number"},
+    "residuals": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {"type": "number"}
+    }
+  }
+}

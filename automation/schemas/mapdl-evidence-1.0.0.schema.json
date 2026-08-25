@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mecar.local/schemas/mapdl-evidence-1.0.0.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "solver_release", "engineering_outcome", "checks", "metrics"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "solver_release": {"const": "211"},
+    "engineering_outcome": {"const": "PASSED"},
+    "checks": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["name", "passed"],
+        "properties": {
+          "name": {"type": "string", "minLength": 1},
+          "passed": {"const": true}
+        }
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {"type": "number"}
+    }
+  }
+}
+

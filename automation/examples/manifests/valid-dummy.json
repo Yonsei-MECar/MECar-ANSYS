@@ -1,0 +1,11 @@
+{
+  "schema_version": "1.0.0",
+  "submission_id": "dummy-success-001",
+  "profile": {"id": "dummy-standard", "version": "1.0.0"},
+  "adapter": "dummy",
+  "timeout_sec": 10,
+  "parameters": {"mode": "success", "delay_sec": 0},
+  "resources": {"cpu": 1, "memory_mb": 128, "licenses": {}},
+  "notification": {"recipients": []}
+}
+

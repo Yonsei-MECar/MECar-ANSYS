@@ -1,0 +1,54 @@
+{
+  "external_execution_enabled": false,
+  "external_archive_enabled": false,
+  "external_license_probe_enabled": false,
+  "external_notification_enabled": false,
+  "minimum_free_disk_mb": 1024,
+  "resources": {
+    "cpu": 4,
+    "memory_mb": 8192,
+    "licenses": {
+      "ansys_structures": 1,
+      "ansys_fluent": 1
+    }
+  },
+  "recipient_policy": {
+    "version": "pending-approval-1",
+    "allowed_domains": [],
+    "allowed_addresses": [],
+    "max_recipients": 20
+  },
+  "notification": {
+    "adapter": "fake"
+  },
+  "artifacts": {
+    "local_root": "artifacts",
+    "archive": {
+      "adapter": "disabled",
+      "route_id": "engineering-nas-pending",
+      "root": null,
+      "roles": [
+        "solver_result",
+        "summary_report"
+      ],
+      "external_enabled": false,
+      "max_attempts": 3
+    }
+  },
+  "license_probe": {
+    "adapter": "disabled",
+    "external_enabled": false,
+    "executable": null,
+    "executable_sha256": null,
+    "server": null,
+    "features": [],
+    "timeout_sec": 5.0
+  },
+  "agent": {
+    "enabled": false,
+    "poll_interval_sec": 5.0,
+    "max_jobs_per_cycle": 100,
+    "max_archive_operations_per_cycle": 100,
+    "max_stale_attempts": 2
+  }
+}

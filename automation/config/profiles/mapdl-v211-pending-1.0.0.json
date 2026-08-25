@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0.0",
+  "profile_id": "mapdl-v211-pending",
+  "version": "1.0.0",
+  "adapter": "mapdl_v211",
+  "enabled": false,
+  "ansys_release": "211",
+  "external_execution_enabled": false,
+  "resources": {"cpu": 4, "memory_mb": 4096, "licenses": {"ansys_structures": 1}},
+  "settings": {
+    "executable": "C:\\Program Files\\ANSYS Inc\\v211\\ansys\\bin\\winx64\\ANSYS211.exe",
+    "executable_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "approved_input": "C:\\MECarConfig\\approved\\mapdl_master.dat",
+    "approved_input_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "approved_assets": [],
+    "max_timeout_sec": 7200,
+    "mandatory_outputs": ["solver.out", "metrics.json"]
+  },
+  "pending_decisions": [
+    "Approve the exact master deck and replace its SHA-256",
+    "Confirm executable/build and license feature",
+    "Set both profile and machine external_execution_enabled only after a live golden-case check"
+  ]
+}

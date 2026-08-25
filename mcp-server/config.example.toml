@@ -1,0 +1,9 @@
+[mcp_servers.ansys_2021r1]
+command = 'C:\Users\YOUR_NAME\AppData\Local\MECar\ansys-mcp-server\venv-py311\Scripts\python.exe'
+args = ['-m', 'ansys_mcp_server.server']
+env = { ANSYS_MCP_VERSION = '211', ANSYS_MCP_ANSYS_ROOT = 'C:\Program Files\ANSYS Inc\v211', ANSYS_MCP_MAPDL_EXE = 'C:\Program Files\ANSYS Inc\v211\ansys\bin\winx64\ANSYS211.exe', ANSYS_MCP_WORK_ROOT = 'D:\MECar', ANSYS_MCP_RUN_LOCATION = 'C:\MECarRuntime\ansys', ANSYS_MCP_ALLOW_RAW_APDL = '0', ANSYS_MCP_ALLOW_WB_SCRIPTS = '0' }
+enabled = true
+required = false
+startup_timeout_sec = 120
+tool_timeout_sec = 1800
+default_tools_approval_mode = 'writes'

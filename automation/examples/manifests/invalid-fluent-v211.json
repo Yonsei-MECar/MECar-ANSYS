@@ -1,0 +1,8 @@
+{
+  "schema_version": "0.9.0",
+  "submission_id": "fluent-invalid-001",
+  "profile": {"id": "fluent-v211-pending", "version": "1.0.0"},
+  "adapter": "fluent_v211",
+  "timeout_sec": 14400
+}
+

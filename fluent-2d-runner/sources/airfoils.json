@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "mecar.fluent2d.airfoil-sources/v1",
+  "profiles": [
+    {
+      "id": "NACA0012",
+      "status": "available-procedural",
+      "sourceType": "procedural-naca4",
+      "source": "NACA four-digit analytical definition",
+      "license": "public-domain-mathematical-definition",
+      "generatorVersion": "mecar-naca4/v1"
+    },
+    {
+      "id": "NACA6412",
+      "status": "available-procedural",
+      "sourceType": "procedural-naca4",
+      "source": "NACA four-digit analytical definition",
+      "license": "public-domain-mathematical-definition",
+      "generatorVersion": "mecar-naca4/v1"
+    },
+    {
+      "id": "NACA6409",
+      "status": "available-procedural",
+      "sourceType": "procedural-naca4",
+      "source": "NACA four-digit analytical definition",
+      "license": "public-domain-mathematical-definition",
+      "generatorVersion": "mecar-naca4/v1"
+    },
+    {
+      "id": "S1223",
+      "status": "blocked-missing-approved-source",
+      "requiredPath": "config/inputs/airfoils/s1223.dat",
+      "requiredBeforeRun": ["source", "license", "sha256"]
+    },
+    {
+      "id": "E423",
+      "status": "blocked-missing-approved-source",
+      "requiredPath": "config/inputs/airfoils/e423.dat",
+      "requiredBeforeRun": ["source", "license", "sha256"]
+    }
+  ]
+}

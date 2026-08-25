@@ -1,0 +1,11 @@
+{
+  "schema_version": "1.0.0",
+  "profile_id": "mapdl-invalid",
+  "version": "1.0.0",
+  "adapter": "mapdl_v211",
+  "enabled": true,
+  "ansys_release": "252",
+  "external_execution_enabled": true,
+  "settings": {}
+}
+
