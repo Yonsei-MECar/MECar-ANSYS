@@ -61,6 +61,7 @@ Thumbs.db
 **/hosts.local
 
 # Solver runtime directories and artifact stores
+local-inputs/
 **/runtime/
 **/results/
 **/work/
