@@ -31,7 +31,7 @@ PowerShell 5.1 이상과 Python 3.10~3.12가 필요합니다. Ansys 2021 R1 기�
 
 ```powershell
 Set-ExecutionPolicy -Scope Process Bypass
-cd ".\Projects\MECar-ANSYS\mcp-server"
+cd ".\Projects\Engineering\GitHub-Public\MECar-ANSYS\mcp-server"
 $projectRoot = (Resolve-Path '..\..\..').Path
 .\install.ps1 -ProjectRoot $projectRoot
 ```
