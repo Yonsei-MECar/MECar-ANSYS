@@ -29,12 +29,35 @@ PowerShell 5.1 이상과 Python 3.10~3.12가 필요합니다. Ansys 2021 R1 기�
 
 런타임은 검증된 `mcp==1.29.0`, `ansys-mapdl-core==0.73.2`를 사용합니다. 빌드·검증 도구까지 포함한 모든 전이 의존성은 `requirements.lock.txt`에 정확한 버전과 PyPI SHA-256으로 고정되어 있습니다. 설치 스크립트는 pip 자체를 업그레이드하지 않고 이 잠금 파일을 `--require-hashes`로 먼저 설치한 뒤, 로컬 패키지를 `--no-deps --no-build-isolation`으로 설치합니다.
 
+아래 예시는 canonical MECar 작업공간 루트에서 시작합니다. 사용자별 상위 경로는
+하드코딩하지 않고 Git checkout에서 저장소 루트를 찾은 뒤 정확히 네 단계 상위의
+`MECar` 작업공간과 `MECar\.codex`를 검증합니다.
+
 ```powershell
 Set-ExecutionPolicy -Scope Process Bypass
-cd ".\Projects\Engineering\GitHub-Public\MECar-ANSYS\mcp-server"
-$projectRoot = (Resolve-Path '..\..\..').Path
+Set-Location ".\Projects\Engineering\GitHub-Public\MECar-ANSYS"
+
+$repoRootOutput = & git rev-parse --show-toplevel
+if ($LASTEXITCODE -ne 0 -or -not $repoRootOutput) {
+    throw 'MECar-ANSYS Git repository root could not be resolved.'
+}
+$repoRoot = [IO.Path]::GetFullPath(($repoRootOutput | Select-Object -First 1).Trim())
+$projectRoot = [IO.Path]::GetFullPath((Join-Path $repoRoot '..\..\..\..'))
+$codexDirectory = Join-Path $projectRoot '.codex'
+
+if ((Split-Path -Leaf $projectRoot) -ne 'MECar' -or
+    -not (Test-Path -LiteralPath $codexDirectory -PathType Container)) {
+    throw "Expected the canonical MECar workspace and .codex directory: $codexDirectory"
+}
+
+Set-Location (Join-Path $repoRoot 'mcp-server')
 .\install.ps1 -ProjectRoot $projectRoot
 ```
+
+검증을 통과하면 설치 스크립트가 갱신하는 대상은
+`$projectRoot\.codex\config.toml`, 즉 `MECar\.codex\config.toml`입니다. 별도 위치에
+clone한 경우에는 자신의 Codex 작업공간 루트를 `-ProjectRoot`에 명시적으로
+전달하십시오.
 
 `install.ps1`은 잠금 의존성 설치에도 `--only-binary=:all:`을 적용하므로, 소스 배포본(sdist)의 임의 빌드가 발생하지 않습니다.
 

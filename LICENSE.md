@@ -8,6 +8,7 @@ single repository-wide license that overrides the component licenses.
 | `automation/**` | [MIT License](automation/LICENSE) |
 | `mcp-server/**` | [MIT License](mcp-server/LICENSE) |
 | `fluent-2d-runner/**` | [GNU GPL v2 or later](fluent-2d-runner/LICENSE) |
+| `workflows/**` | [MIT License](automation/LICENSE) |
 | Root documentation and repository metadata | MIT License, using the terms in `automation/LICENSE` |
 
 Files that carry their own copyright or license notice remain governed by that
