@@ -10,6 +10,12 @@ MECar의 ANSYS 해석 자동화 소스를 공개하기 위한 저장소다. 실�
 | [`mcp-server`](mcp-server/) | MAPDL·Workbench와 MCP 클라이언트를 연결하는 브리지 | MIT |
 | [`fluent-2d-runner`](fluent-2d-runner/) | Fluent 2021 R1 2D 케이스 준비·실행·검증 | GPL-2.0-or-later |
 
+팀별 해석 범위와 산출물 계약은 [`workflows`](workflows/)에서 구분한다. 기계 3팀의
+프레임 고체 구조해석, 차량 다운포스 유동해석과 윙 강성·단방향 연성해석이 같은
+실행 엔진을 공유하되 서로 다른 검증 기준과 profile을 갖도록 설계했다. 기계 2팀의
+VD·hardpoint 산출물은 승인된 load와 geometry 경계조건으로 구조해석 workflow에
+인계한다.
+
 ## 공개 범위
 
 저장소에 포함하는 것은 소스 코드, JSON Schema, 비밀이 제거된 예제 설정,
