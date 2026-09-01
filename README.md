@@ -36,9 +36,15 @@ VD·hardpoint 산출물은 승인된 load와 geometry 경계조건으로 구조�
 
 ## 개발 확인
 
-각 하위 프로젝트의 README에 로컬 실행법이 있다. 기본 단위 테스트는 외부
-ANSYS, 라이선스 서버, SMTP 또는 NAS에 접속하지 않으며 GitHub Actions에서도
-같은 범위만 실행한다.
+구성요소별 로컬 실행법은 다음 문서에 있다.
+
+- [Fluent 2D runner](fluent-2d-runner/README_KO.md)
+- [Mechanical MCP server](mcp-server/README_KO.md)
+- [자동화 도구](automation/README.md)
+- [검토된 해석 workflow](workflows/README.md)
+
+기본 단위 테스트는 외부 ANSYS, 라이선스 서버, SMTP 또는 NAS에 접속하지 않으며
+GitHub Actions에서도 같은 범위만 실행한다.
 
 라이선스 적용 범위는 [`LICENSE.md`](LICENSE.md), 외부 구성 요소와 상표 고지는
 [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md)를 확인한다.
